@@ -7,5 +7,25 @@ var c = document.getElementById("myCanvas");
 	<body>
 HEY WHAT"S UP DAWWWGG
         <p>Men gai 3gl el gom3a el gaya?</p>
-	</body>
+  <canvas id="myCanvas" width="1215" height="717 "></canvas>
+
+
+
+    <script>
+        window.onload = function() {
+            var canvas = document.getElementById("myCanvas");
+            var ctx = canvas.getContext("2d");
+            var imageObj = new Image();
+            imageObj.src = "my hero.png";
+            imageObj.onload = function() {
+                ctx.drawImage(imageObj,100, 0);
+                ctx.shadowColor = "#000000";
+                ctx.shadowOffsetX = 2;
+                ctx.shadowOffsetY = 2;
+                ctx.shadowBlur = 7;
+            };
+        };
+
+    </script>	
+</body>
 </html>
