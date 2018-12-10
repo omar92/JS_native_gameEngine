@@ -1,35 +1,17 @@
 <!doctype html>
 <html>
 	<head>
-		<title> BATALO LE3B </title>
-var c = document.getElementById("myCanvas");
+		<title> Our Portfolio </title>
 	</head>
 	<body>
-                Hello from the other side (:<br>
-
-HEY WHAT"S UP DAWWWGG
-        <p>Men gai 3gl el gom3a el gaya?</p>
-  <canvas id="myCanvas" width="100" height="717 "></canvas>
-<img src="https://www.syfy.com/sites/syfy/files/styles/1200x1200/public/2018/04/senuamain.jpg?itok=BIiB33Pr&timestamp=1522948609" height="=200" width="200">
-
-
+  <canvas id="canvas" style="border:dotted" width="700" height="350"></canvas>
     <script>
-        window.onload = function() {
-            var canvas = document.getElementById("myCanvas");
-            var ctx = canvas.getContext("2d");
-            var imageObj = new Image();
-            imageObj.src = "my hero.png";
-            imageObj.onload = function() {
-                ctx.drawImage(imageObj,100, 0);
-                ctx.shadowColor = "#000000";
-                ctx.shadowOffsetX = 2;
-                ctx.shadowOffsetY = 2;
-                ctx.shadowBlur = 7;
-                //Muhammad Tarek Describtion
-                //document.writeln("Aloha");
+            window.onload = function() {
+            var canvas = document.getElementById("canvas");
+            var ctx = canvas.getContext("2d")
+            var height = canvas.height;
+            var width = canvas.width;
             };
-        };
-
     </script>	
 </body>
 </html>
