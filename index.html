@@ -1,11 +1,31 @@
 <!doctype html>
 <html>
 	<head>
-		<title> JS-Game </title>
-var c = document.getElementById("myCanvas");
+		<title> GEngine39 </title>
 	</head>
-	<body>
-<img <omg src="https://res.cloudinary.com/teepublic/image/private/s--KXsEErxr--/t_Preview/b_rgb:36538b,c_limit,f_jpg,h_630,q_90,w_630/v1483316370/production/designs/1012933_1.jpg" height="=800" width="800">
+    <body>
+    	<h1>Header</h1>
+        <canvas id="canvas" style="border:dotted" width="700" height="350"></canvas>
 
-</body>
+        <!-- game Engine status -->
+        <script src="GEngine39/EngineStateMachine/EngineStates/initState.js"></script>
+        <script src="GEngine39/EngineStateMachine/EngineStates/playState.js"></script>
+
+        <!-- game Eegine files -->
+        <script src= "GEngine39/EngineStateMachine/StateMachine.js"></script>
+        <script src="GEngine39/GEngine39.js"></script>
+
+
+
+        <script src="Level.js"></script>
+        <script>
+
+            window.onload = function () {
+                var canvas = document.getElementById("canvas");
+                var ctx = canvas.getContext("2d")
+                var height = canvas.height;
+                var width = canvas.width;
+            };
+        </script>
+    </body>
 </html>
