@@ -29,6 +29,13 @@ var GameObject = (function () {
             this._components[i].onExit();
         }
     }
+    GameObject.prototype.addCompnent = function (component) {
+
+        component.GameObject = this;
+        component.enable =true;
+        this._components.push(component);
+
+    }
 
     return {
         getInstance: function (name) {

@@ -2,8 +2,16 @@
 var startScene = new Scene();
 
  var player = GameObject.getInstance ("player");
-// var transform = new transform();
 
+ var Transform = {
+    onStart: function(){
+        GameObject.getCompo
+    },
+    onUpdate: function(){
+        console.log("player update");
+    }
+}
+ player.addCompnent(Transform);
  startScene.addGameObject(player);
 
 GE.sceneManager.addScene(startScene);
