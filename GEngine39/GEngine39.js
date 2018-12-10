@@ -1,11 +1,17 @@
 (function () {
 
     var proto = {};
+    var onInit ;
     this.GE = Object.create(proto);
 
     var SM = StateMachine.getInstance();
+    
+
+    //engine properties
+    this.GE.sceneManager = SceneManager.getInstance();
     //engine prototype functions
     proto.start = function(){
+       // onInit();
         SM.changeState(initState);
     }
 

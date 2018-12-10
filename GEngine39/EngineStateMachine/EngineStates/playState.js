@@ -1,12 +1,21 @@
 var playState = {
-    onStart:function(){
+    isRunning : true,
+    onStart: function () {
 
+       GE.sceneManager.changeScene(0);
+
+        function RequestFrames(){
+            GE.sceneManager.onUpdate();
+            if(isRunning){
+                requestAnimationFrame(RequestFrames);
+            }
+        }
         
-        console.log("play State hello");
-
+        isRunning = true;
+        RequestFrames();
 
     },
-    onExit:function(){
-
+    onExit: function () {
+        isRunning = false;
     }
 }

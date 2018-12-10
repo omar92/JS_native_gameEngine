@@ -1,4 +1,15 @@
-GE.start();
+
+var startScene = new Scene();
+
+ var player = GameObject.getInstance ("player");
+// var transform = new transform();
+
+ startScene.addGameObject(player);
+
+GE.sceneManager.addScene(startScene);
+GE.start( );
+
+
 
 
 var text = '{"Project":[' +

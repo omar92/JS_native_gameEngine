@@ -1,13 +1,12 @@
 var StateMachine = (function () {
-    var instance;
-    var  currentState = null;
-
+   
     function createInstance() {
         var object = new StateMachine();
         return object;
     }
 
     function StateMachine() { 
+        this.currentState = null;
     }
     StateMachine.prototype.changeState = function (newState) {
         if (this.currentState && this.currentState.hasOwnProperty("onExit")) // exit current state
@@ -23,10 +22,7 @@ var StateMachine = (function () {
     }
     return {
         getInstance: function () {
-            if (!instance) {
-                instance = createInstance();
-            }
-            return instance;
+            return createInstance();
         }
     };
 
