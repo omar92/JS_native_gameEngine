@@ -9,6 +9,7 @@
 
     //engine properties
     this.GE.sceneManager = SceneManager.getInstance();
+    this.GE.RenderEngine2D = new RenderEngine2D("canvas");
     //engine prototype functions
     proto.start = function(){
        // onInit();

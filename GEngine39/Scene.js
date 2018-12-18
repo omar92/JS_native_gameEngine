@@ -13,10 +13,15 @@ Scene.prototype.onStart = function () {
 
 Scene.prototype.onUpdate = function() {
   //  console.log("onUpate");
+
+
     for (let i = 0; i < this.GameObjects.length; i++) {
         var gameObject =  this.GameObjects[i];
         gameObject.onUpdate();
-    }
+    } 
+    
+    GE.RenderEngine2D.render(this.GameObjects);
+    //renderer.render();
 }
 
 

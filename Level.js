@@ -15,14 +15,14 @@ var Transform = (function () {
                     return `x:${this.x},y:${this.y},z:${this.z}`;
                 }
             };
-           // console.log(_pos);
+            // console.log(_pos);
             if (_pos) {
-               // console.log("here");
+                // console.log("here");
                 this.pos.x = _pos.x;
                 this.pos.y = _pos.y;
                 this.pos.z = _pos.z;
             }
-           // console.log( this.pos);
+            // console.log( this.pos);
         }
         onStart() {}
         onUpdate() {}
@@ -40,45 +40,38 @@ var MoveCompnent = (function () {
         }
         onUpdate() {
             if (this.trans) {
-                this.trans.pos.x++;
-                this.trans.pos.y++;
+                this.trans.pos.x+= 2;
+                this.trans.pos.y+= 2;
             }
         }
     }
     return MoveCompnent;
 })();
 
-var Draw = (function () {
+var Image = (function () {
     var ctx = null;
-    class Draw {
-        constructor() {
-            this.trans = null;
+    class Image {
+        constructor(color, w, h) {
+            this.color = color;
+            this.w = w;
+            this.h = h;
         }
         onStart() {
-            this.trans = this.GameObject.getComponent(Transform);
-            if (!ctx) {
-                var canvas = document.getElementById("canvas");
-                ctx = canvas.getContext("2d");
-            }
-
-            console.log(this.trans);
+            GE.RenderEngine2D.subscribe(this);
         }
-        onUpdate() {
-            ctx.beginPath();
-         //   console.log( this.trans.pos.toString());
-            ctx.fillRect(this.trans.pos.x, this.trans.pos.y, 10, 10);
-            ctx.fill();
-            ctx.closePath();
+        onUpdate() {}
+        onExit(){
+            GE.RenderEngine2D.unSubscribe(this);
         }
     }
-    return Draw;
+    return Image;
 })();
 
-player.addCompnent(new Draw());
+player.addCompnent(new Image("red",10,10));
 player.addCompnent(new MoveCompnent());
 player.addCompnent(new Transform());
 
-enemy.addCompnent(new Draw());
+enemy.addCompnent(new Image("blue",20,10));
 enemy.addCompnent(new MoveCompnent());
 enemy.addCompnent(new Transform({
     x: 100,
