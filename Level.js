@@ -74,19 +74,19 @@ var Draw = (function () {
     return Draw;
 })();
 
-//player.addCompnent(new Draw());
-//player.addCompnent(new MoveCompnent());
+player.addCompnent(new Draw());
+player.addCompnent(new MoveCompnent());
 player.addCompnent(new Transform());
 
 enemy.addCompnent(new Draw());
-//enemy.addCompnent(new MoveCompnent());
+enemy.addCompnent(new MoveCompnent());
 enemy.addCompnent(new Transform({
     x: 100,
     y: 0,
     z: 0
 }));
 
-//startScene.addGameObject(player);
+startScene.addGameObject(player);
 startScene.addGameObject(enemy);
 
 GE.sceneManager.addScene(startScene);
