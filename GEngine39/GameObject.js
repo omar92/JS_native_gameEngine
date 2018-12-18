@@ -1,46 +1,44 @@
 var GameObject = (function () {
     var num = 0;
-
-    function _createInstance(name) {
-        var object = new GameObject(name);
-        return object;
-    }
-
-
-    function GameObject(name) {
-        this.name = name || "gameObject" + num++;
-        this._components = [];
-    }
-    GameObject.prototype.onStart = function () {
-        for (let i = 0; i < this._components.length; i++) {
-            this._components[i].onStart();
+    var _components = [];
+    class GameObject {
+        constructor(name) {
+            this.name = name || "gameObject" + num++;
         }
-    }
-    GameObject.prototype.onUpdate = function () {
-        console.log("gameObject update");
-        for (let i = 0; i < this._components.length; i++) {
-            if (this._components[i].enable) {
-                this._components[i].onUpdate();
+        onStart() {
+            for (let i = 0; i < _components.length; i++) {
+                _components[i].onStart();
             }
         }
-    }
-    GameObject.prototype.onExit = function () {
-        for (let i = 0; i < this._components.length; i++) {
-            this._components[i].onExit();
+        onUpdate() {
+          //  console.log("gameObject update");
+            for (let i = 0; i < _components.length; i++) {
+                if (_components[i].enable) {
+                    _components[i].onUpdate();
+                }
+            }
+        }
+        onExit() {
+            for (let i = 0; i < _components.length; i++) {
+                _components[i].onExit();
+            }
+        }
+        addCompnent(component) {
+            component.GameObject = this;
+            component.enable = true;
+            _components.push(component);
+        }
+        getComponent( _Class ){
+
+            for (let i = 0; i < _components.length; i++) {
+                if(_components[i] instanceof _Class){
+                    return _components[i];
+                }
+            }
+            return null;
         }
     }
-    GameObject.prototype.addCompnent = function (component) {
 
-        component.GameObject = this;
-        component.enable =true;
-        this._components.push(component);
-
-    }
-
-    return {
-        getInstance: function (name) {
-            return _createInstance(name);
-        }
-    };
+    return GameObject ;
 
 })();

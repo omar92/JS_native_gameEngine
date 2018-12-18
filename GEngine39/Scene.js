@@ -6,15 +6,15 @@ function Scene(name) {
 }
 Scene.prototype.onStart = function () {
     for (let i = 0; i <  this.GameObjects.length; i++) {
-        const gameObject =  this.GameObjects[i];
-        gameObject.OnStart();
+        var gameObject =  this.GameObjects[i];
+        gameObject.onStart();
     }
 }
 
 Scene.prototype.onUpdate = function() {
-    console.log("onUpate");
+  //  console.log("onUpate");
     for (let i = 0; i < this.GameObjects.length; i++) {
-        const gameObject =  this.GameObjects[i];
+        var gameObject =  this.GameObjects[i];
         gameObject.onUpdate();
     }
 }
@@ -22,7 +22,7 @@ Scene.prototype.onUpdate = function() {
 
 Scene.prototype.onExit = function () {
     for (let i = 0; i < GameObjects.length; i++) {
-        const gameObject = GameObjects[i];
+        var gameObject = GameObjects[i];
         gameObject.onExit();
     }
 }

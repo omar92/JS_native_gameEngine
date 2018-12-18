@@ -3,7 +3,7 @@ var playState = {
     onStart: function () {
 
        GE.sceneManager.changeScene(0);
-
+       GE.sceneManager.onStart();
         function RequestFrames(){
             GE.sceneManager.onUpdate();
             if(isRunning){

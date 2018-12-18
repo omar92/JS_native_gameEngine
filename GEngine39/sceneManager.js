@@ -19,8 +19,14 @@ var SceneManager = (function () {
     sceneManager.prototype.addScene = function (newScene) {
         GameScenes.push(newScene)
     }
+    sceneManager.prototype.onStart= function (){
+        SM.getCurrentState().onStart();
+    }
     sceneManager.prototype.onUpdate= function (){
         SM.getCurrentState().onUpdate();
+    }
+    sceneManager.prototype.onExit= function (){
+        SM.getCurrentState().onExit();
     }
     // sceneManager.prototype.addGameObject= function (gameObject){
     //     SM.getCurrentState().addGameObject(gameObject);
