@@ -2,7 +2,8 @@ var startScene = new Scene();
 
 var enemy = new GameObject("enemy");
 var player = new GameObject("player");
-//var sayed = new GameObject("sayed");
+
+
 
 var Transform = (function () {
     class Transform {
@@ -31,6 +32,7 @@ var Transform = (function () {
 })();
 
 var MoveCompnent = (function () {
+    //static
     class MoveCompnent {
         constructor() {
             this.trans = null;
@@ -40,39 +42,43 @@ var MoveCompnent = (function () {
         }
         onUpdate() {
             if (this.trans) {
-                this.trans.pos.x+= 2;
-                this.trans.pos.y+= 2;
+                this.trans.pos.x+= .5;
+                this.trans.pos.y+= .5;
             }
         }
     }
+    //privat methods 
     return MoveCompnent;
 })();
 
-var Image = (function () {
-    var ctx = null;
-    class Image {
-        constructor(color, w, h) {
-            this.color = color;
-            this.w = w;
-            this.h = h;
+
+var MoveCompnent2 = (function () {
+    //static
+    class MoveCompnent2 {
+        constructor() {
+            this.trans = null;
         }
         onStart() {
-            GE.RenderEngine2D.subscribe(this);
+            this.trans = this.GameObject.getComponent(Transform);
         }
-        onUpdate() {}
-        onExit(){
-            GE.RenderEngine2D.unSubscribe(this);
+        onUpdate() {
+            if (this.trans) {
+               // this.trans.pos.x+= 2;
+                this.trans.pos.x+= 5;
+            }
         }
     }
-    return Image;
+    //privat methods 
+    return MoveCompnent2;
 })();
 
-player.addCompnent(new Image("red",10,10));
+player.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(100,100,"red")));
 player.addCompnent(new MoveCompnent());
 player.addCompnent(new Transform());
 
-enemy.addCompnent(new Image("blue",20,10));
+enemy.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(100,100,"blue")));
 enemy.addCompnent(new MoveCompnent());
+//enemy.addCompnent(new MoveCompnent2());
 enemy.addCompnent(new Transform({
     x: 100,
     y: 0,
@@ -80,7 +86,7 @@ enemy.addCompnent(new Transform({
 }));
 
 startScene.addGameObject(player);
-startScene.addGameObject(enemy);
+//startScene.addGameObject(enemy);
 
 GE.sceneManager.addScene(startScene);
 GE.start();
@@ -94,3 +100,4 @@ var text = '{"Project":[' +
     '{ "Name": "3", "Description": "blabla3", "Images":["blabla.png","blabla2.jpg","fahmy.gif"] }]}';
 var obj = JSON.parse(text);
 // console.log(obj.Project[0].Description);
+
