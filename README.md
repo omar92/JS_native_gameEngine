@@ -1,7 +1,8 @@
-# JS_native_game
-Intake 39 js-native js-game 
-
-
+# JS native gameEngine 
+custome native JS game Engine 
+includes :
+-2d physics engine
+-2d render engine
 
 # version .1   20/12/2018
  - Basic render engine 
