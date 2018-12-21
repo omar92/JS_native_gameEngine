@@ -2,6 +2,8 @@ var RenderEngine2D = (function () {
 
     var canvas;
     var ctx;
+    var shape;
+    var trans;
     var _shapes = [];
 
     function has(shape2D) {
@@ -15,10 +17,10 @@ var RenderEngine2D = (function () {
 
     function inCanvas(pos, w, h) {
         return (
-            (pos.y + h ) > 0 &&
-            (pos.y ) < canvas.height &&
-            (pos.x + w ) > 0 &&
-            (pos.x ) < canvas.width
+            (pos.y + h) > 0 &&
+            (pos.y) < canvas.height &&
+            (pos.x + w) > 0 &&
+            (pos.x) < canvas.width
         );
     }
 
@@ -27,21 +29,22 @@ var RenderEngine2D = (function () {
             canvas = document.getElementById(CanvasName);
             ctx = canvas.getContext("2d");
         }
-        render() {
+        onUpdate() {
             canvas.width = canvas.width; //clear screen
-            var shape;
-            var trans;
+
             //  console.log(Images);
             for (let i = 0; i < _shapes.length; i++) {
-
-                if (shape = _shapes[i]) {
-                    trans = shape.GameObject.getComponent(Transform);
+                shape = _shapes[i]
+                if (trans = shape.GameObject.getComponent(Transform)) {
                     if (inCanvas(trans.pos, shape._shape.w, shape._shape.h)) {
                         shape._shape._render(canvas, ctx, trans);
                     }
-                    // } else {
-                    //     console.log(' ${shape.GameObject.name} out of canvas');
+                    //else {
+                    //     console.log(shape.GameObject.name + ' out of canvas');
                     // }
+                } else {
+                    throw (shape.GameObject.name + ' Transform not found')
+
                 }
             }
         }
