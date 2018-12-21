@@ -14,6 +14,7 @@ Scene.prototype.onStart = function () {
 Scene.prototype.onUpdate = function() {
   //  console.log("onUpate");
 
+    GE.PhysicsEngine2D.onUpdate();
 
     for (let i = 0; i < this.GameObjects.length; i++) {
         var gameObject =  this.GameObjects[i];

@@ -10,6 +10,7 @@
     //engine properties
     this.GE.sceneManager = SceneManager.getInstance();
     this.GE.RenderEngine2D = new RenderEngine2D("canvas");
+    this.GE.PhysicsEngine2D= new PhysicsEngine2D( );
     //engine prototype functions
     proto.start = function(){
        // onInit();
