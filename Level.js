@@ -3,34 +3,6 @@ var startScene = new Scene();
 var enemy = new GameObject("enemy");
 var player = new GameObject("player");
 
-
-
-var Transform = (function () {
-    class Transform {
-        constructor(_pos) {
-            this.pos = {
-                x: 0,
-                y: 0,
-                z: 0,
-                toString: function () {
-                    return `x:${this.x},y:${this.y},z:${this.z}`;
-                }
-            };
-            // console.log(_pos);
-            if (_pos) {
-                // console.log("here");
-                this.pos.x = _pos.x;
-                this.pos.y = _pos.y;
-                this.pos.z = _pos.z;
-            }
-            // console.log( this.pos);
-        }
-        onStart() {}
-        onUpdate() {}
-    }
-    return Transform;
-})();
-
 var MoveCompnent = (function () {
     //static
     class MoveCompnent {
@@ -42,8 +14,7 @@ var MoveCompnent = (function () {
         }
         onUpdate() {
             if (this.trans) {
-                this.trans.pos.x+= .5;
-                this.trans.pos.y+= .5;
+                this.trans.setPos(this.trans.getPos().sum(new Vector3(.5, .5, .5)));
             }
         }
     }
@@ -63,8 +34,8 @@ var MoveCompnent2 = (function () {
         }
         onUpdate() {
             if (this.trans) {
-               // this.trans.pos.x+= 2;
-                this.trans.pos.x+= 5;
+                // this.trans.pos.x+= 2;
+                this.trans.pos.x += 5;
             }
         }
     }
@@ -72,21 +43,20 @@ var MoveCompnent2 = (function () {
     return MoveCompnent2;
 })();
 
-player.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(100,100,"red")));
+player.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(100, 100, "red")));
 player.addCompnent(new MoveCompnent());
-player.addCompnent(new Transform());
-
-enemy.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(100,100,"blue")));
-enemy.addCompnent(new MoveCompnent());
+var playerT;
+player.addCompnent(playerT = new Transform());
+playerT.setPos(new Vector3(10,30,0));
+enemy.addCompnent(new shape2D(new RenderEngine2D.shapes.Square(50, 50, "blue")));
+//enemy.addCompnent(new MoveCompnent());
 //enemy.addCompnent(new MoveCompnent2());
-enemy.addCompnent(new Transform({
-    x: 100,
-    y: 0,
-    z: 0
-}));
-
+var enemyT;
+enemy.addCompnent(enemyT = new Transform());
+enemyT.setPos(new Vector3(20,20,0));
+enemyT.setParent(playerT);
 startScene.addGameObject(player);
-//startScene.addGameObject(enemy);
+startScene.addGameObject(enemy);
 
 GE.sceneManager.addScene(startScene);
 GE.start();
@@ -100,4 +70,3 @@ var text = '{"Project":[' +
     '{ "Name": "3", "Description": "blabla3", "Images":["blabla.png","blabla2.jpg","fahmy.gif"] }]}';
 var obj = JSON.parse(text);
 // console.log(obj.Project[0].Description);
-

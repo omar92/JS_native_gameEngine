@@ -26,10 +26,10 @@ Scene.prototype.onUpdate = function() {
 }
 
 
-Scene.prototype.onExit = function () {
+Scene.prototype.onDestroy = function () {
     for (let i = 0; i < GameObjects.length; i++) {
         var gameObject = GameObjects[i];
-        gameObject.onExit();
+        gameObject.onDestroy();
     }
 }
 

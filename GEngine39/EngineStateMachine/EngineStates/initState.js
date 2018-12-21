@@ -8,7 +8,7 @@ var initState = {
 
         GE.stateDone();
     },
-    onExit:function(){
+    onDestroy:function(){
 
     }
 }

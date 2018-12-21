@@ -15,7 +15,7 @@ var playState = {
         RequestFrames();
 
     },
-    onExit: function () {
+    onDestroy: function () {
         isRunning = false;
     }
 }

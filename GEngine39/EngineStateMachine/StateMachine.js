@@ -9,8 +9,8 @@ var StateMachine = (function () {
         this.currentState = null;
     }
     StateMachine.prototype.changeState = function (newState) {
-        if (this.currentState && this.currentState.hasOwnProperty("onExit")) // exit current state
-            this.currentState.onExit();
+        if (this.currentState && this.currentState.hasOwnProperty("onDestroy")) // exit current state
+            this.currentState.onDestroy();
 
         this.currentState = newState; //replace current state
 
