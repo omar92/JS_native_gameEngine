@@ -11,7 +11,7 @@ var PhysicsEngine2D = (function () {
                 rb2d = rigidBodys2D[i]
                 if (trans = rb2d.GameObject.getComponent(Transform)) {
 
-
+                    trans.pos.sum(rb2d.velocity);
 
                 }else{
                     throw(rb2d.GameObject.name + ' Transform not found')
@@ -36,4 +36,21 @@ var PhysicsEngine2D = (function () {
         }
     }
     return PhysicsEngine2D;
+})();
+
+
+var rigidBody2D = (function () {
+    class rigidBody2D {
+        constructor() {
+            this.velocity = new vector3();
+        }
+        onStart() {
+            GE.PhysicsEngine2D.subscribe(this);
+        }
+        onUpdate() {}
+        onDestroy() {
+            GE.PhysicsEngine2D.unSubscribe(this);
+        }
+    }
+    return rigidBody2D;
 })();
