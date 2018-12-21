@@ -20,7 +20,7 @@ Scene.prototype.onUpdate = function() {
         gameObject.onUpdate();
     } 
     
-    GE.RenderEngine2D.render(this.GameObjects);
+    GE.RenderEngine2D.onUpdate();
     //renderer.render();
 }
 
