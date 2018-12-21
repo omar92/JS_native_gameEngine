@@ -5,6 +5,7 @@ var RenderEngine2D = (function () {
     var shape;
     var trans;
     var _shapes = [];
+    var tPos;
 
     function has(shape2D) {
         for (let i = 0; i < _shapes.length; i++) {
@@ -31,20 +32,18 @@ var RenderEngine2D = (function () {
         }
         onUpdate() {
             canvas.width = canvas.width; //clear screen
-
-            //  console.log(Images);
             for (let i = 0; i < _shapes.length; i++) {
                 shape = _shapes[i]
                 if (trans = shape.GameObject.getComponent(Transform)) {
-                    if (inCanvas(trans.pos, shape._shape.w, shape._shape.h)) {
-                        shape._shape._render(canvas, ctx, trans);
+                    tPos = trans.getPos();
+                    if (inCanvas(tPos, shape._shape.w, shape._shape.h)) {
+                        shape._shape._render(canvas, ctx, tPos);
                     }
                     //else {
                     //     console.log(shape.GameObject.name + ' out of canvas');
                     // }
                 } else {
                     throw (shape.GameObject.name + ' Transform not found')
-
                 }
             }
         }
@@ -69,10 +68,10 @@ RenderEngine2D.shapes.Square = class {
         this.h = h || 1;
         this.color = color || "black";
     }
-    _render(canvas, ctx, trans) {
+    _render(canvas, ctx, tPos) {
         ctx.beginPath();
         ctx.fillStyle = this.color;
-        ctx.fillRect(trans.pos.x, trans.pos.y, this.w, this.h);
+        ctx.fillRect(tPos.x, tPos.y, this.w, this.h);
         ctx.fill();
         ctx.closePath();
     }
@@ -89,7 +88,7 @@ var shape2D = (function () {
             GE.RenderEngine2D.subscribe(this);
         }
         onUpdate() {}
-        onExit() {
+        onDestroy() {
             GE.RenderEngine2D.unSubscribe(this);
         }
     }
